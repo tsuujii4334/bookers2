@@ -13,7 +13,10 @@ class BooksController < ApplicationController
   end
   
   def index
-    @books =book.all
+    @user = User.find(current_user)
+    @book = 
+    @books = book.all
+    
   end
   
   def show

@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def new
-    @book = Book.new
+    @book = Book.new #新しくbookレコードを取得 
   end
   
   
@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to book_path(params[:id])
+    redirect_to book_path(@book.id) #@book.id(新しく取得したbookレコード)のbookshowページに飛ぶ
   end
   
   def index
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]) #そのままidが適用される？
   end
   
   def update

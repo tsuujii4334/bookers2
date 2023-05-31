@@ -5,7 +5,7 @@
   <%= image_tag @user.get_profile_image(100,100) %>
   <h3>name</h3>
   <h3><%= @user.name %></h3>
-  <p><%#= link_to "編集アイコン",edit_user_pass(@user.id)  %></p>
+  <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
 </div>
 
 <h1>New book</h1>
@@ -19,7 +19,10 @@
 <!--bookshowの記述-->
 <div>
   <h1>Book detail</h1>
-  <%#= image_tag @book.get_image %>
+  <%= link_to post_image_path(post_image.id) do %>
+    <%= image_tag post_image.get_image %>
+  <% end %>
+  <%#= image_tag @book.get_image %> <!--ユーザー画像の表示ができていない-->
   <p>投稿ユーザー画像：<%#= image_tag 'sample-author1.jpg' %></p>
   <p>title：<%= @book.title %></p>
   <p>opinion：<%= @book.body %></p>

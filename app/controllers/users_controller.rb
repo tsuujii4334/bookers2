@@ -6,11 +6,10 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:id])
-    @book = Book.new(book_params)
+    @current_user = User.find(current_user.id)
+    @users = User.all
+    @book = Book.new
     @book.user_id = current_user.id
-    @book.save
-    redirect_to book_path
   end
 
   def edit
@@ -27,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).parmit(:name, :profile_image, :introduction)  #なぜか消えない×　ルーティングエラーが
+    params.require(:user).permit(:name, :profile_image, :introduction)  #なぜか消えない×　ルーティングエラーが
   end
 end

@@ -4,6 +4,7 @@
   <%= image_tag @user.get_profile_image(100,100) %>
   <h3>name</h3>
   <h3><%= @user.name %></h3>
+  <h3><%= @user.introduction %></h3>
   <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
 </div>
 

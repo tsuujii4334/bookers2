@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       
       ## 名前を保存するカラム
       t.string :name
+      t.text :introduction
 
 
       t.timestamps null: false
@@ -45,3 +46,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
     # add_index :users, :unlock_token,         unique: true
   end
 end
+
+
+#migratefileの編集方法
+#１rails db:migrate:statusでup,downを確認
+#２rails db:rollbackなどでdownにする(編集するファイルのみ)
+#３migrateファイルを編集
+#rails db:migrateですべてupにする

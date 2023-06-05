@@ -6,28 +6,34 @@ class BooksController < ApplicationController
 
   #投稿データの保存
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(book_params) #フォームで入力された記述を入れる。必要な記述
     @book.user_id = current_user.id
     @book.save
     redirect_to book_path(@book.id) #@book.id(新しく取得したbookレコード)のbookshowページに飛ぶ
   end
 
   def index
-    @user = current_user
-    @book = Book.new(params[:id])
+    @user = current_user #ログインしてるuser
+    @book = Book.new
     @books = Book.all
   end
 
   def show
-    @book = Book.new(book_params)
-    #bookshowでも@bookを使いたいがすでにbooknewで使っていいるためどう書いたらいいのかわからない
-    @user = User.find(params[:id])
+    @newbook = Book.new
+    @book = Book.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def edit
-    @book = Book.find(params[:id]) #そのままidが適用される？
+    @book = Book.find(params[:id]) #urlが適用される
   end
   
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to book_path(params[:id])
+  end
+
   def destroy
     book = Book.find(params[:id])
     book.destroy
@@ -37,8 +43,8 @@ class BooksController < ApplicationController
   #投稿データのストロングパラメータ
   private
 
-  def book_params
-    params.permit(:title, :body)
+  def book_params #フォームで入力された内容についての記述
+    params.require(:book).permit(:title, :body) #基本この形　params.require(:カラム名).permit(:title, :bodyなど)
   end
 
 

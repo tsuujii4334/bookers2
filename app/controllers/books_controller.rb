@@ -8,8 +8,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params) #フォームで入力された記述を入れる。必要な記述
     @book.user_id = current_user.id
-    @book.save
-    redirect_to book_path(@book.id) #@book.id(新しく取得したbookレコード)のbookshowページに飛ぶ
+    if @book.save
+      redirect_to book_path(@book.id) #@book.id(新しく取得したbookレコード)のbookshowページに飛ぶ
+    else
+      render :new
+    end
   end
 
   def index
@@ -30,8 +33,11 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -7,6 +7,8 @@ class User < ApplicationRecord
   
   has_one_attached :profile_image
   
+  validates :name, presence: true #editとsign_upの時とでバリデーションが異なるためエラーメッセージが表示されてしまう
+  validates :introduction, presence: true
   
   def get_profile_image(width,height)
     unless profile_image.attached?

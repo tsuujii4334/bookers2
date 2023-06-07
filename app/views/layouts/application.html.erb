@@ -12,6 +12,9 @@
 
   <body>
     <header>
+      <li>
+        <%= link_to "Bookers", root_path %>
+      </li>
       <% if user_signed_in? %>
         <li>
           <%= link_to "Home", user_path(current_user.id) %>

@@ -33,7 +33,13 @@ class BooksController < ApplicationController
   end
 
   def edit
+    if @current_user
+      redirect_to edit_book_path(params[:id])
+    else
+      redirect_to books_path #アクセス制限で他人の投稿編集画面に遷移できないようにしたかったがページが表示されなかった。
+    end
     @book = Book.find(params[:id]) #urlが適用される
+
   end
 
   def update
@@ -49,7 +55,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to books/show
+    redirect_to books_path
   end
 
   #投稿データのストロングパラメータ

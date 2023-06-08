@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
-
+  
+  
   def new
     @book = Book.new #新しくbookレコードを取得
   end
@@ -33,13 +33,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    if @current_user
-      redirect_to edit_book_path(params[:id])
-    else
-      redirect_to books_path #アクセス制限で他人の投稿編集画面に遷移できないようにしたかったがページが表示されなかった。
+    @user = current_user
+    @book = Book.find(params[:id])
+    if @user != @book.user
+      redirect_to books_path
     end
-    @book = Book.find(params[:id]) #urlが適用される
-
   end
 
   def update
@@ -64,11 +62,13 @@ class BooksController < ApplicationController
   def book_params #フォームで入力された内容についての記述
     params.require(:book).permit(:title, :body) #基本この形　params.require(:カラム名).permit(:title, :bodyなど)
   end
-
-  def correct_user
-    @book = Book.find(params[:id])
-    @user = @book.user
-    redirect_to(book_path(params[:id])) unless @user == current_user
-  end
+  
+  
+  
+  #def correct_user
+  #  @book = Book.find(params[:id])
+  #  @user = @book.user
+  #  redirect_to(book_path(params[:id])) unless @user == current_user
+  #end
 
 end

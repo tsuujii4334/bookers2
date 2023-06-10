@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
-  
-  
+
   def new
     @book = Book.new #新しくbookレコードを取得
   end
@@ -16,8 +15,8 @@ class BooksController < ApplicationController
     else
       @user = current_user
       @books = Book.all
-      render :index   #同じコントローラー内だとシングルクォーテーションで囲む
-    end
+      render :index   #同じコントローラー内だとシングルクォーテーションで囲む 
+    end               #render :inidex =>index.htmlが直接出力されるイメージ
   end
 
   def index
@@ -29,7 +28,7 @@ class BooksController < ApplicationController
   def show
     @newbook = Book.new
     @book = Book.find(params[:id])
-    @user = User.find(current_user.id)
+    @user = @book.user
   end
 
   def edit
@@ -62,9 +61,9 @@ class BooksController < ApplicationController
   def book_params #フォームで入力された内容についての記述
     params.require(:book).permit(:title, :body) #基本この形　params.require(:カラム名).permit(:title, :bodyなど)
   end
-  
-  
-  
+
+
+
   #def correct_user
   #  @book = Book.find(params[:id])
   #  @user = @book.user

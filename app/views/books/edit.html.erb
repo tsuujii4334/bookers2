@@ -1,4 +1,16 @@
 <h1>Editing Book</h1>
+
+<!--バリデーションエラーメッセージ-->
+<% if @book.errors.any? %>
+  <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+  <ul>
+    <p><% @book.errors.full_messages.each do |message| %></p>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!--bookeditの記述-->
 <%= form_with model: @book do |f| %>
   <p>Title</p>
   <%= f.text_field :title, autofocus: true, id: "title"%>

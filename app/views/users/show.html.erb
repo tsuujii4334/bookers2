@@ -4,19 +4,58 @@
 </div>
 
 <!--usershowの記述-->
-<h1>User Info</h1>
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <h3>name</h3>
-  <h3><%= @user.name %></h3>
-  <h3>introduction</h3>
-  <h3><%= @user.introduction %></h3>
-  <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
-</div>
 
+<div class="container">
+  <div class="row">
+    <h1>User Info</h1>
+  </div>
+  <div class="row">
+    <%= image_tag @user.get_profile_image(100,100) %>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>name</h3>
+    </div>
+    <div class="col">
+      <h3><%= @user.name %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>introduction</h3>
+    </div>
+    <div class="col">
+      <h3><%= @user.introduction %></h3>
+    </div>
+  </div>
+  <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
+
+<!--booknewの記述-->
+<div class="row">
+  <h1>New book</h1>
+</div>
+<!--バリデーションはbookindex参照-->
+  <%= form_with model: @newbook , url: books_path , method: :post do |f| %>
+  <div class="row">
+    <h4>Title</h4>
+  </div>
+  <div class="row">
+      <%= f.text_field :title %>
+  </div>
+  <div class="row">
+    <h4>Opinion</h4>
+  </div>
+  <div class="row">
+      <%= f.text_area :body %>
+  </div>
+    <%= f.submit 'Create Book' %>
+  <% end %>
+</div>
+ 
+<div class="container">
 <!--bookindexの記述-->
 <h2>Books</h2>
-<table class="table" >
+<table class="table " >
   <thead>
     <tr>
       <th></th>
@@ -37,15 +76,6 @@
 </table>
 <% end %>
 
+</div>
 
-<!--booknewの記述-->
-<h1>New book</h1>
-<!--バリデーションはbookindex参照-->
-  <%= form_with model: @newbook , url: books_path , method: :post do |f| %>
-    <h4>Title</h4>
-      <%= f.text_field :title %>
-    <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-  <% end %>
 

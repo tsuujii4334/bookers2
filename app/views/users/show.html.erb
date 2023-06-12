@@ -5,77 +5,68 @@
 
 <!--usershowの記述-->
 
-<div class="container">
+ <div class="container">
   <div class="row">
-    <h1>User Info</h1>
-  </div>
-  <div class="row">
+  <div class="col-lg-3">
+    <h2>User Info</h2>
     <%= image_tag @user.get_profile_image(100,100) %>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h3>name</h3>
-    </div>
-    <div class="col">
-      <h3><%= @user.name %></h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h3>introduction</h3>
-    </div>
-    <div class="col">
-      <h3><%= @user.introduction %></h3>
-    </div>
-  </div>
+    <table class="table">
+      <tr>
+        <th scope="row">name</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">introduction</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </table>
   <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
-
 <!--booknewの記述-->
-<div class="row">
-  <h1>New book</h1>
-</div>
+  <h2>New book</h2>
 <!--バリデーションはbookindex参照-->
   <%= form_with model: @newbook , url: books_path , method: :post do |f| %>
-  <div class="row">
-    <h4>Title</h4>
-  </div>
-  <div class="row">
+    <p>Title</p>
       <%= f.text_field :title %>
-  </div>
-  <div class="row">
-    <h4>Opinion</h4>
-  </div>
-  <div class="row">
+    <p>Opinion</p>
       <%= f.text_area :body %>
-  </div>
     <%= f.submit 'Create Book' %>
   <% end %>
+  </div>
+<div class="col-lg-1">
 </div>
- 
-<div class="container">
 <!--bookindexの記述-->
-<h2>Books</h2>
-<table class="table " >
+<div class="col-lg-8">
+ <h2>Books</h2>
+ <table class="table" >
   <thead>
     <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
+      <th scope="col"></th>
+      <th scope="col">Title</th>
+      <th scope="col">Opinion</th>
     </tr>
   </thead>
   <tbody>
-  <% @books.each do |book| %>
-  <%= link_to user_path(book.user.id) do %>
-    <%= image_tag book.user.get_profile_image(100,100) %>
-  <% end %>
-  <%= link_to book_path(book.id) do %>
-    <p><%= book.title %></p>
-  <% end %>
-    <p><%= book.body %></p>
+    <tr>
+     <% @books.each do |book| %>
+      <th scope="row">
+       <%= link_to user_path(book.user.id) do %>
+        <%= image_tag book.user.get_profile_image(100,100) %>
+       <% end %>
+      </th>
+      <td>
+       <%= link_to book_path(book.id) do %>
+         <%= book.title %>
+       <% end %>
+      </td>
+      <td>
+       <%= book.body %>
+      </td>
+    </tr>
   </tbody>
-</table>
-<% end %>
-
+ </table>
+ <% end %>
+ </div>
+ </div>
 </div>
 
 

@@ -12,67 +12,117 @@
   </head>
 
   <body>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-1">
+      <header>
+           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+          <li>
+            <a class="nav-link text-light" href="/users/:id"> <!--hrefでログインユーザーページを指定する方法がわからない-->
+              <i class="fas fa-home"></i> Home</a>           </li>
+          <li>
+            <a class="nav-link text-light" href="/users">
+              <i class="fas fa-users"></i> Users</a>         </li>
+          <li>
+            <a class="nav-link text-light" href="/books">
+              <i class="fas fa-book-open"></i> Books</a>     </li>
+          <li>
+            <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+              <i class="fas fa-sign-out-alt"></i> Log out</a></li>
+
+              <% else %>
+
+          <li>
+            <a class="nav-link text-light" href="/">
+              <i class="fas fa-home"></i> Home</a>            </li>
+          <li>
+            <a class="nav-link text-light" href="/home/about">
+              <i class="fas fa-link"></i> About</a>            </li>
+          <li>
+            <a class="nav-link text-light" href="/users/sign_up">
+              <i class="fas fa-user-plus"></i> Sign up</a>     </li>
+          <li>
+            <a class="nav-link text-light" href="/users/sign_in">
+              <i class="fas fa-sign-in-alt"></i> Log in</a>    </li>
+
+              <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+       <nav class="navbar">
+        <div class="container">
+         <div class="row">
+          <span>
             <a href ="/">Bookers</a>
-          </div>
+          </span>
+
+          <ul class="navbar-nav">
           <div class="col-lg-7"></div>
              <% if user_signed_in? %>
-             <div class="col-lg-1">
-               <i class="fa-solid fa-house-chimney">
+              <li class="nav-item">
+              <i class="fa-solid fa-house-chimney">
                 <%= link_to "Home", user_path(current_user.id) %>
               </i>
-              </div>
-              <div class="col-lg-1">
+              </li>
+
+                <li class="nav-item">
                 <i class="fa-solid fa-users">
                  <%= link_to "Users", users_path %>
                 </i>
-              </div>
-              <div class="col-lg-1">
+                </li>
+                <li class="nav-item">
                 <i class="fa-solid fa-book-open">
                  <%= link_to "Books", books_path %>
                 </i>
-              </div>
-              <div class="col-lg-1">
+                </li>
+                <li class="nav-item">
                 <i class="fa-solid fa-right-from-bracket">
                  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
                 </i>
-              </div>
+                </li>
+
              <% else %>
-              <div class="col-lg-1">
+
+                <li>
                 <i class="fa-solid fa-house-chimney">
                  <%= link_to "Home", root_path %>
                 </i>
-              </div>
-              <div class="col-lg-1">
+                </li>
+                <li>
                 <i class="fa-solid fa-link">
                  <%= link_to "About", about_path %>
                 </i>
-              </div>
-              <div class="col-lg-1">
+                </li>
+                <li>
                 <i class="fa-solid fa-user-plus"></i>
                  <%= link_to "Sign up", new_user_registration_path %>
                 </i>
-              </div>
-              <div class="col-lg-1">
+                </li>
+                <li>
                 <i class="fa-solid fa-right-to-bracket">
                  <%= link_to "Log in", new_user_session_path %>
                </i>
-              </div>
+               </li>
              <% end %>
+           </ul>
           </div>
-        </div>
+         </div>
+        </nav>
+       </header>
 
     <%= yield %>
 
+
+   <footer>
     <div class="row">
-      <div class="mx-auto">
-       <p>CopyRight Infratop.inc</p>
-      </div>
+      <div class="mx-auto"><p>CopyRight Infratop.inc</p></div>
     </div>
-
-
-
+   </footer>
   </body>
 </html>

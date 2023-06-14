@@ -46,8 +46,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    
      <% @books.each do |book| %>
+      <tr>
       <th scope="row">
        <%= link_to user_path(book.user.id) do %>
         <%= image_tag book.user.get_profile_image(100,100) %>
@@ -62,9 +63,10 @@
        <%= book.body %>
       </td>
     </tr>
-  </tbody>
- </table>
- <% end %>
+
+   <% end %>
+   </tbody>
+  </table>
  </div>
  </div>
 </div>

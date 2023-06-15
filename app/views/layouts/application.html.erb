@@ -23,98 +23,48 @@
         <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
           <li>
-            <a class="nav-link text-light" href="/users/:id"> <!--hrefでログインユーザーページを指定する方法がわからない-->
-              <i class="fas fa-home"></i> Home</a>           </li>
+            <%= link_to user_path(current_user),class:"nav-link text-light" do %> <!--hrefでログインユーザーページを指定する方法がわからない-->
+              <i class="fas fa-home"></i> Home                                    <!-- link to passの形に書き換えて解決。パスの後にclass指定することで、CSSを適応させることができる。-->
+            <% end %>
+          </li>
           <li>
             <a class="nav-link text-light" href="/users">
-              <i class="fas fa-users"></i> Users</a>         </li>
+              <i class="fas fa-users"></i> Users</a>
+          </li>
           <li>
             <a class="nav-link text-light" href="/books">
-              <i class="fas fa-book-open"></i> Books</a>     </li>
+              <i class="fas fa-book-open"></i> Books</a>
+          </li>
           <li>
             <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
-              <i class="fas fa-sign-out-alt"></i> Log out</a></li>
+              <i class="fas fa-sign-out-alt"></i> Log out</a>
+          </li>
 
               <% else %>
 
           <li>
             <a class="nav-link text-light" href="/">
-              <i class="fas fa-home"></i> Home</a>            </li>
+              <i class="fas fa-home"></i> Home</a>
+          </li>
           <li>
             <a class="nav-link text-light" href="/home/about">
-              <i class="fas fa-link"></i> About</a>            </li>
+              <i class="fas fa-link"></i> About</a>
+          </li>
           <li>
             <a class="nav-link text-light" href="/users/sign_up">
-              <i class="fas fa-user-plus"></i> Sign up</a>     </li>
+              <i class="fas fa-user-plus"></i> Sign up</a>
+          </li>
           <li>
             <a class="nav-link text-light" href="/users/sign_in">
-              <i class="fas fa-sign-in-alt"></i> Log in</a>    </li>
+              <i class="fas fa-sign-in-alt"></i> Log in</a>
+          </li>
 
               <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
-       <nav class="navbar">
-        <div class="container">
-         <div class="row">
-          <span>
-            <a href ="/">Bookers</a>
-          </span>
-
-          <ul class="navbar-nav">
-          <div class="col-lg-7"></div>
-             <% if user_signed_in? %>
-              <li class="nav-item">
-              <i class="fa-solid fa-house-chimney">
-                <%= link_to "Home", user_path(current_user.id) %>
-              </i>
-              </li>
-
-                <li class="nav-item">
-                <i class="fa-solid fa-users">
-                 <%= link_to "Users", users_path %>
-                </i>
-                </li>
-                <li class="nav-item">
-                <i class="fa-solid fa-book-open">
-                 <%= link_to "Books", books_path %>
-                </i>
-                </li>
-                <li class="nav-item">
-                <i class="fa-solid fa-right-from-bracket">
-                 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-                </i>
-                </li>
-
-             <% else %>
-
-                <li>
-                <i class="fa-solid fa-house-chimney">
-                 <%= link_to "Home", root_path %>
-                </i>
-                </li>
-                <li>
-                <i class="fa-solid fa-link">
-                 <%= link_to "About", about_path %>
-                </i>
-                </li>
-                <li>
-                <i class="fa-solid fa-user-plus"></i>
-                 <%= link_to "Sign up", new_user_registration_path %>
-                </i>
-                </li>
-                <li>
-                <i class="fa-solid fa-right-to-bracket">
-                 <%= link_to "Log in", new_user_session_path %>
-               </i>
-               </li>
-             <% end %>
-           </ul>
-          </div>
-         </div>
-        </nav>
-       </header>
+      　　  </ul>
+    　　　　  </div>
+    　　　　</div>
+  　　　　</nav>
+  　</header>
 
     <%= yield %>
 

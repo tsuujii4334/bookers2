@@ -11,7 +11,9 @@
   <h3><%= @user.name %></h3>
   <h3>introduction</h3>
   <h3><%= @user.introduction %></h3>
-  <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
+  <%= link_to edit_user_path(@user.id),class:"btn btn-lg btn-block btn-outline-secondary" do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
 </div>
 
 <!--booknewの記述-->
@@ -23,7 +25,7 @@
       <%= f.text_field :title %>
     <h4>Opinion</h4>
       <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
+    <input type="submit" name="commit" value="Create Book" class="btn btn-success">
   <% end %>
 
 <!--bookshowの記述-->

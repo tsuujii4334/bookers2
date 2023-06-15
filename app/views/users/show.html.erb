@@ -13,14 +13,16 @@
     <table class="table">
       <tr>
         <th scope="row">name</th>
-        <td><%= @user.name %></td>
+        <th><%= @user.name %></th>
       </tr>
       <tr>
         <th scope="row">introduction</th>
         <td><%= @user.introduction %></td>
       </tr>
     </table>
-  <p><%= link_to "編集アイコン",edit_user_path(@user.id)  %></p>
+    <%= link_to edit_user_path(@user.id),class:"btn btn-lg btn-block btn-outline-secondary" do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
 <!--booknewの記述-->
   <h2>New book</h2>
 <!--バリデーションはbookindex参照-->
@@ -29,13 +31,11 @@
       <%= f.text_field :title %>
     <p>Opinion</p>
       <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
+    <input type="submit" name="commit" value="Create Book" class="btn btn-success">
   <% end %>
   </div>
-<div class="col-lg-1">
-</div>
 <!--bookindexの記述-->
-<div class="col-lg-8">
+<div class="col-lg-8 offset-lg-1">
  <h2>Books</h2>
  <table class="table" >
   <thead>
@@ -46,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    
+
      <% @books.each do |book| %>
       <tr>
       <th scope="row">

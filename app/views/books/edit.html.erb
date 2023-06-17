@@ -1,8 +1,7 @@
-
 <div class="container">
   <div class="row">
-    <div class="col-md-8 px-5 max-auto">
-      <h1>Editing Book</h1>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 max-auto">
+      <h2>Editing Book</h2>
 
 <!--バリデーションエラーメッセージ-->
 <% if @book.errors.any? %>
@@ -13,17 +12,20 @@
     <% end %>
   </ul>
 <% end %>
-<!--bookeditの-->
+<!--bookeditの記述-->
       <%= form_with model: @book do |f| %>
        <div class="form-group">
          <label for="book_title">title</label>
+         <%= f.text_field :book_title, class:"form-control" %>
          <input class="form-control book_title" type="text" name="book[title]" id="book_title"><!--valueの表示方法がわからない（編集前の文字をあらかじめ表示させたい）-->
        </div>
        <div class="form-group">
          <label for="book_opinion">Opinion</label>
+         <%= f.text_area :book_body, class:"form-control" %>
          <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
        </div>
        <div class="form-group">
+          <%= f.submit 'Update Book', class:"btn btn-lg btn-success mt-4" %>
          <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
        </div>
         <% end %>

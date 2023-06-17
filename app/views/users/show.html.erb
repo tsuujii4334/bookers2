@@ -26,14 +26,13 @@
   <%= form_with model: @newbook , url: books_path , method: :post do |f| %>
     <div class="form-group">
         <label for="book_title">Title</label>
-        <input class="form-control book_title" type="text" name="book[title]" id="book_title">
+        <%= f.text_field :book_title, class:"form-control" %>
     </div>
     <div class="form-group">
         <label for="book_opinion">Opinion</label>
-        <textarea class="form-control book_body" type="text" name="book[body]" id="book_body">
-        </textarea>
+        <%= f.text_area :book_body, class:"form-control" %>
     </div>
-    <input type="submit" name="commit" value="Create Book" class="btn btn-success">
+    <%= f.submit 'Create Book', class:"btn btn-success" %>
   <% end %>
   </div>
 <!--bookindexの記述-->

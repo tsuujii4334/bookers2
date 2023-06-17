@@ -62,12 +62,4 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body) #基本この形　params.require(:カラム名).permit(:title, :bodyなど)
   end
 
-
-
-  #def correct_user
-  #  @book = Book.find(params[:id])
-  #  @user = @book.user
-  #  redirect_to(book_path(params[:id])) unless @user == current_user
-  #end
-
 end

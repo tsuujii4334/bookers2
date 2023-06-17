@@ -1,4 +1,8 @@
-<h1>Editing Book</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 px-5 max-auto">
+      <h1>Editing Book</h1>
 
 <!--バリデーションエラーメッセージ-->
 <% if @book.errors.any? %>
@@ -9,16 +13,23 @@
     <% end %>
   </ul>
 <% end %>
-
-<!--bookeditの記述-->
-<%= form_with model: @book do |f| %>
-  <p>Title</p>
-  <%= f.text_field :title, autofocus: true, id: "title"%>
-  <p>Opinion</p>
-  <%= f.text_field :body, id: "body" %>
-  <p><%= f.submit "Update Book" %></p>
-  <% end %>
-
-<span><%= link_to "Show",book_path(@book) %></span>
-|
-<span><%= link_to "Back",books_path %></span>
+<!--bookeditの-->
+      <%= form_with model: @book do |f| %>
+       <div class="form-group">
+         <label for="book_title">title</label>
+         <input class="form-control book_title" type="text" name="book[title]" id="book_title"><!--valueの表示方法がわからない（編集前の文字をあらかじめ表示させたい）-->
+       </div>
+       <div class="form-group">
+         <label for="book_opinion">Opinion</label>
+         <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+       </div>
+       <div class="form-group">
+         <input type="submit" name="commit" value="Update Book" class="btn btn-success" data-disable-with="Update Book">
+       </div>
+        <% end %>
+        <span><%= link_to "Show",book_path(@book) %></span>
+          |
+        <span><%= link_to "Back",books_path %></span>
+    </div>
+  </div>
+</div>

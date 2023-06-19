@@ -4,7 +4,7 @@
 <!--usershowの記述-->
  <div class="container">
   <div class="row">
-  <div class="col-lg-3">
+  <div class="col-md-3">
     <h2>User Info</h2>
     <%= image_tag @user.get_profile_image(100,100) %>
     <table class="table">
@@ -27,18 +27,18 @@
   <%= form_with model: @newbook , url: books_path , method: :post do |f| %>
     <div class="form-group">
         <label for="book_title">Title</label>
-        <%= f.text_field :book_title, class:"form-control" %>
+        <%= f.text_field :title, class:"form-control" %>
     </div>
     <div class="form-group">
         <label for="book_opinion">Opinion</label>
-        <%= f.text_area :book_body, class:"form-control" %>
+        <%= f.text_area :body, class:"form-control" %>
     </div>
     <%= f.submit 'Create Book', class:"btn btn-success" %>
   <% end %>
   </div>
 
 <!--bookshowの記述-->
-    <div class="col-lg-8 offset-lg-1">
+    <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
